@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API REST Sécurisée - Démo Interactive</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="header-title">
+                    <i class="fas fa-shield-alt"></i>
+                    API REST Sécurisée - Démo Interactive
+                </h1>
+                <div class="auth-status">
+                    <span id="auth-status">Non connecté</span>
+                    <button id="logout-btn" class="btn btn--sm btn--outline hidden">Déconnexion</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-tabs">
+                <button class="nav-tab active" data-tab="overview">
+                    <i class="fas fa-home"></i>
+                    Vue d'ensemble
+                </button>
+                <button class="nav-tab" data-tab="auth">
+                    <i class="fas fa-key"></i>
+                    Authentification
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Vue d'ensemble -->
+            <section id="overview" class="tab-content active">
+                <div class="hero">
+                    <h2>Backend robuste avec authentification JWT</h2>
+                    <p class="hero-description">
+                        API REST complète construite avec Node.js et Express, incluant un système d'authentification sécurisé avec JWT, 
+                        une base de données MongoDB et une documentation Swagger complète. Architecture scalable avec gestion d'erreurs robuste et tests automatisés.
+                    </p>
+                </div>
+
+                <div class="grid">
+                    <div class="card">
+                        <div class="card__body">
+                            <h3><i class="fas fa-tools"></i> Technologies</h3>
+                            <div class="tech-list">
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">Express</span>
+                                <span class="tech-tag">JWT</span>
+                                <span class="tech-tag">MongoDB</span>
+                                <span class="tech-tag">Swagger</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card__body">
+                            <h3><i class="fas fa-star"></i> Fonctionnalités</h3>
+                            <ul class="feature-list">
+                                <li><i class="fas fa-lock"></i> Authentification JWT sécurisée</li>
+                                <li><i class="fas fa-api"></i> API RESTful complète</li>
+                                <li><i class="fas fa-file-alt"></i> Documentation Swagger automatisée</li>
+                                <li><i class="fas fa-check-circle"></i> Tests unitaires intégrés</li>
+                                <li><i class="fas fa-expand-arrows-alt"></i> Architecture scalable</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="architecture-overview">
+                    <h3>Architecture du Système</h3>
+                    <div class="arch-diagram">
+                        <div class="arch-layer">
+                            <div class="arch-box">
+                                <i class="fas fa-desktop"></i>
+                                <span>Client</span>
+                            </div>
+                        </div>
+                        <div class="arch-arrow">↓</div>
+                        <div class="arch-layer">
+                            <div class="arch-box">
+                                <i class="fas fa-route"></i>
+                                <span>Routes/Controllers</span>
+                            </div>
+                        </div>
+                        <div class="arch-arrow">↓</div>
+                        <div class="arch-layer">
+                            <div class="arch-box">
+                                <i class="fas fa-cogs"></i>
+                                <span>Services/Middleware</span>
+                            </div>
+                        </div>
+                        <div class="arch-arrow">↓</div>
+                        <div class="arch-layer">
+                            <div class="arch-box">
+                                <i class="fas fa-database"></i>
+                                <span>MongoDB</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Authentification -->
+            <section id="auth" class="tab-content">
+                <div class="auth-container">
+                    <div class="auth-forms">
+                        <div class="auth-form-section">
+                            <h3><i class="fas fa-user-plus"></i> Inscription</h3>
+                            <form id="register-form" class="auth-form">
+                                <div class="form-group">
+                                    <label class="form-label" for="register-name">Nom</label>
+                                    <input type="text" id="register-name" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="register-email">Email</label>
+                                    <input type="email" id="register-email" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="register-password">Mot de passe</label>
+                                    <input type="password" id="register-password" class="form-control" required>
+                                </div>
+                                <button type="submit" class="btn btn--primary btn--full-width">S'inscrire</button>
+                            </form>
+                        </div>
+
+                        <div class="auth-form-section">
+                            <h3><i class="fas fa-sign-in-alt"></i> Connexion</h3>
+                            <form id="login-form" class="auth-form">
+                                <div class="form-group">
+                                    <label class="form-label" for="login-email">Email</label>
+                                    <input type="email" id="login-email" class="form-control" value="john@example.com">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="login-password">Mot de passe</label>
+                                    <input type="password" id="login-password" class="form-control" value="password123">
+                                </div>
+                                <button type="submit" class="btn btn--primary btn--full-width">Se connecter</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div id="token-display" class="token-section hidden">
+                        <h3><i class="fas fa-key"></i> Token JWT Généré</h3>
+                        <div class="token-container">
+                            <textarea id="jwt-token" class="form-control token-textarea" readonly></textarea>
+                            <button class="btn btn--outline" onclick="copyToken()">
+                                <i class="fas fa-copy"></i> Copier
+                            </button>
+                        </div>
+                        <div class="user-info">
+                            <h4>Utilisateur connecté :</h4>
+                            <div id="user-details"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+            
+
+
+
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
+
+
+
+
+
