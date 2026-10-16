@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API REST Sécurisée - Démo Interactive</title>
+    <title>Simulateur d’API REST — démo interactive</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <aside class="demo-disclaimer" role="note" aria-label="Limites de la démonstration"><div class="container"><strong>Démo pédagogique uniquement.</strong> L’inscription, la connexion, les réponses et le jeton sont simulés dans votre navigateur. Aucune API ni base de données ne reçoit ces données. N’entrez aucun vrai mot de passe ni donnée personnelle.</div></aside>
     <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="header-content">
                 <h1 class="header-title">
                     <i class="fas fa-shield-alt"></i>
-                    API REST Sécurisée - Démo Interactive
+                    Simulateur d’API REST — démo interactive
                 </h1>
                 <div class="auth-status">
                     <span id="auth-status">Non connecté</span>
@@ -34,7 +35,7 @@
                 </button>
                 <button class="nav-tab" data-tab="auth">
                     <i class="fas fa-key"></i>
-                    Authentification
+                    Simulation de session
                 </button>
             </div>
         </div>
@@ -46,10 +47,10 @@
             <!-- Vue d'ensemble -->
             <section id="overview" class="tab-content active">
                 <div class="hero">
-                    <h2>Backend robuste avec authentification JWT</h2>
+                    <h2>Un aperçu visuel des échanges d’une API</h2>
                     <p class="hero-description">
-                        API REST complète construite avec Node.js et Express, incluant un système d'authentification sécurisé avec JWT, 
-                        une base de données MongoDB et une documentation Swagger complète. Architecture scalable avec gestion d'erreurs robuste et tests automatisés.
+                        Cette page reproduit côté navigateur des exemples d’inscription, de connexion et de réponses JSON.
+                        Elle ne lance pas de serveur, ne signe pas de JWT et ne stocke pas de compte.
                     </p>
                 </div>
 
@@ -58,11 +59,11 @@
                         <div class="card__body">
                             <h3><i class="fas fa-tools"></i> Technologies</h3>
                             <div class="tech-list">
-                                <span class="tech-tag">Node.js</span>
-                                <span class="tech-tag">Express</span>
-                                <span class="tech-tag">JWT</span>
-                                <span class="tech-tag">MongoDB</span>
-                                <span class="tech-tag">Swagger</span>
+                                <span class="tech-tag">HTML</span>
+                                <span class="tech-tag">CSS</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">DOM</span>
+                                <span class="tech-tag">Données simulées</span>
                             </div>
                         </div>
                     </div>
@@ -71,44 +72,44 @@
                         <div class="card__body">
                             <h3><i class="fas fa-star"></i> Fonctionnalités</h3>
                             <ul class="feature-list">
-                                <li><i class="fas fa-lock"></i> Authentification JWT sécurisée</li>
-                                <li><i class="fas fa-api"></i> API RESTful complète</li>
-                                <li><i class="fas fa-file-alt"></i> Documentation Swagger automatisée</li>
-                                <li><i class="fas fa-check-circle"></i> Tests unitaires intégrés</li>
-                                <li><i class="fas fa-expand-arrows-alt"></i> Architecture scalable</li>
+                                <li><i class="fas fa-play-circle"></i> Parcours d’inscription simulé</li>
+                                <li><i class="fas fa-user-lock"></i> État de session conservé en mémoire</li>
+                                <li><i class="fas fa-code"></i> Exemples de réponses JSON</li>
+                                <li><i class="fas fa-copy"></i> Copie du jeton fictif</li>
+                                <li><i class="fas fa-shield-alt"></i> Aucune requête envoyée à un serveur</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
                 <div class="architecture-overview">
-                    <h3>Architecture du Système</h3>
+                    <h3>Flux de la simulation</h3>
                     <div class="arch-diagram">
                         <div class="arch-layer">
                             <div class="arch-box">
                                 <i class="fas fa-desktop"></i>
-                                <span>Client</span>
+                                <span>Interface navigateur</span>
                             </div>
                         </div>
                         <div class="arch-arrow">↓</div>
                         <div class="arch-layer">
                             <div class="arch-box">
                                 <i class="fas fa-route"></i>
-                                <span>Routes/Controllers</span>
+                                <span>Fonctions JavaScript</span>
                             </div>
                         </div>
                         <div class="arch-arrow">↓</div>
                         <div class="arch-layer">
                             <div class="arch-box">
                                 <i class="fas fa-cogs"></i>
-                                <span>Services/Middleware</span>
+                                <span>État temporaire en mémoire</span>
                             </div>
                         </div>
                         <div class="arch-arrow">↓</div>
                         <div class="arch-layer">
                             <div class="arch-box">
                                 <i class="fas fa-database"></i>
-                                <span>MongoDB</span>
+                                <span>Aucune base de données</span>
                             </div>
                         </div>
                     </div>
@@ -120,7 +121,7 @@
                 <div class="auth-container">
                     <div class="auth-forms">
                         <div class="auth-form-section">
-                            <h3><i class="fas fa-user-plus"></i> Inscription</h3>
+                            <h3><i class="fas fa-user-plus"></i> Inscription simulée</h3>
                             <form id="register-form" class="auth-form">
                                 <div class="form-group">
                                     <label class="form-label" for="register-name">Nom</label>
@@ -134,28 +135,28 @@
                                     <label class="form-label" for="register-password">Mot de passe</label>
                                     <input type="password" id="register-password" class="form-control" required>
                                 </div>
-                                <button type="submit" class="btn btn--primary btn--full-width">S'inscrire</button>
+                                <button type="submit" class="btn btn--primary btn--full-width">Simuler l’inscription</button>
                             </form>
                         </div>
 
                         <div class="auth-form-section">
-                            <h3><i class="fas fa-sign-in-alt"></i> Connexion</h3>
+                            <h3><i class="fas fa-sign-in-alt"></i> Connexion simulée</h3>
                             <form id="login-form" class="auth-form">
                                 <div class="form-group">
                                     <label class="form-label" for="login-email">Email</label>
-                                    <input type="email" id="login-email" class="form-control" value="john@example.com">
+                                    <input type="email" id="login-email" class="form-control" placeholder="demo@example.test">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label" for="login-password">Mot de passe</label>
-                                    <input type="password" id="login-password" class="form-control" value="password123">
+                                    <input type="password" id="login-password" class="form-control" placeholder="Mot de passe fictif">
                                 </div>
-                                <button type="submit" class="btn btn--primary btn--full-width">Se connecter</button>
+                                <button type="submit" class="btn btn--primary btn--full-width">Lancer la simulation</button>
                             </form>
                         </div>
                     </div>
 
                     <div id="token-display" class="token-section hidden">
-                        <h3><i class="fas fa-key"></i> Token JWT Généré</h3>
+                        <h3><i class="fas fa-key"></i> Jeton fictif de démonstration</h3>
                         <div class="token-container">
                             <textarea id="jwt-token" class="form-control token-textarea" readonly></textarea>
                             <button class="btn btn--outline" onclick="copyToken()">
@@ -163,7 +164,7 @@
                             </button>
                         </div>
                         <div class="user-info">
-                            <h4>Utilisateur connecté :</h4>
+                            <h4>Profil fictif :</h4>
                             <div id="user-details"></div>
                         </div>
                     </div>
