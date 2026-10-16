@@ -1,16 +1,16 @@
 // Application data
 const appData = {
   "project": {
-    "title": "API REST Sécurisée",
-    "shortDescription": "Backend robuste avec authentification JWT",
-    "fullDescription": "API REST complète construite avec Node.js et Express, incluant un système d'authentification sécurisé avec JWT, une base de données MongoDB et une documentation Swagger complète. Architecture scalable avec gestion d'erreurs robuste et tests automatisés.",
-    "technologies": ["Node.js", "Express", "JWT", "MongoDB", "Swagger"],
+    "title": "Simulateur d’API REST",
+    "shortDescription": "Interface pédagogique de réponses API simulées",
+    "fullDescription": "Une page HTML, CSS et JavaScript qui illustre des parcours d’authentification et des réponses JSON sans backend, stockage durable ni requêtes réseau.",
+    "technologies": ["HTML", "CSS", "JavaScript"],
     "features": [
-      "Authentification JWT sécurisée",
-      "API RESTful complète", 
-      "Documentation Swagger automatisée",
-      "Tests unitaires intégrés",
-      "Architecture scalable"
+      "Inscription et connexion simulées",
+      "État de session temporaire en mémoire",
+      "Exemples de réponses JSON",
+      "Jeton factice clairement identifié",
+      "Aucune donnée envoyée à un serveur"
     ]
   },
   "endpoints": [
@@ -247,7 +247,7 @@ function handleRegister(e) {
         createdAt: new Date().toISOString()
     };
     
-    const token = generateJWTToken(userData);
+    const token = generateDemoToken(userData);
     
     // Update app state
     appState.currentUser = userData;
@@ -262,7 +262,7 @@ function handleRegister(e) {
     document.getElementById('register-form').reset();
     
     // Show success message
-    showNotification('Inscription réussie !', 'success');
+    showNotification('Inscription simulée réussie (non enregistrée).', 'success');
 }
 
 function handleLogin(e) {
@@ -284,7 +284,7 @@ function handleLogin(e) {
         createdAt: '2023-01-15T10:30:00Z'
     };
     
-    const token = generateJWTToken(userData);
+    const token = generateDemoToken(userData);
     
     // Update app state
     appState.currentUser = userData;
@@ -296,7 +296,7 @@ function handleLogin(e) {
     showTokenDisplay(token, userData);
     
     // Show success message
-    showNotification('Connexion réussie !', 'success');
+    showNotification('Connexion simulée réussie.', 'success');
 }
 
 function handleLogout() {
@@ -316,7 +316,7 @@ function handleLogout() {
     if (loginForm) loginForm.reset();
     
     // Show success message
-    showNotification('Déconnexion réussie !', 'success');
+    showNotification('Session locale terminée.', 'success');
 }
 
 function updateAuthStatus() {
@@ -326,10 +326,10 @@ function updateAuthStatus() {
     if (!authStatus) return;
     
     if (appState.isAuthenticated && appState.currentUser) {
-        authStatus.textContent = `Connecté : ${appState.currentUser.name}`;
+        authStatus.textContent = `Session locale : ${appState.currentUser.name}`;
         if (logoutBtn) logoutBtn.classList.remove('hidden');
     } else {
-        authStatus.textContent = 'Non connecté';
+        authStatus.textContent = 'Simulation inactive';
         if (logoutBtn) logoutBtn.classList.add('hidden');
     }
 }
@@ -364,24 +364,15 @@ function hideTokenDisplay() {
     userDetails.innerHTML = '';
 }
 
-function generateJWTToken(userData) {
-    // Generate a realistic but fake JWT token
-    const header = btoa(JSON.stringify({
-        "alg": "HS256",
-        "typ": "JWT"
-    }));
-    
-    const payload = btoa(JSON.stringify({
-        "sub": userData.id,
-        "name": userData.name,
-        "email": userData.email,
-        "iat": Math.floor(Date.now() / 1000),
-        "exp": Math.floor(Date.now() / 1000) + (24 * 60 * 60) // 24 hours
-    }));
-    
-    const signature = btoa('fake-signature-' + Math.random().toString(36).substr(2, 9));
-    
-    return `${header}.${payload}.${signature}`;
+function generateDemoToken(userData) {
+    return JSON.stringify({
+        demo: true,
+        signed: false,
+        subject: userData.id,
+        name: userData.name,
+        email: userData.email,
+        createdAt: userData.createdAt
+    }, null, 2);
 }
 
 function generateId() {
@@ -398,7 +389,7 @@ function copyToken() {
     
     try {
         document.execCommand('copy');
-        showNotification('Token copié dans le presse-papiers !', 'success');
+        showNotification('Jeton fictif copié.', 'success');
     } catch (err) {
         showNotification('Erreur lors de la copie', 'error');
     }
