@@ -1423,3 +1423,19 @@ select.form-control {
   from { opacity: 0; transform: translateX(-20px); }
   to { opacity: 1; transform: translateX(0); }
 }
+
+/* Avis visible : les réponses de ce prototype sont simulées dans le navigateur. */
+.demo-disclaimer {
+  position: relative;
+  z-index: 5;
+  padding: 1rem 0;
+  color: #3b1e12;
+  background: #fff1d6;
+  border-bottom: 1px solid #eac98d;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+.demo-disclaimer strong { display: inline-block; margin-right: 0.35rem; }
+@media (max-width: 600px) {
+  .demo-disclaimer { padding: 0.85rem 0; font-size: 0.875rem; }
+}
